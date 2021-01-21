@@ -8,6 +8,12 @@
     <title>blog</title>
 </head>
 <body>
+    <div>
+        {% for post in posts %}
+            <p>{{ post.title }}</p>
+            <p>{{ post.content }}</p> <br> <br>
+        {% endfor %}
+    </div>
     
 </body>
 </html>
