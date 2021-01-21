@@ -3,7 +3,9 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class Post (models.Model):
-
+    class Manager(models.Manager):
+        def get_queryset(self):
+            return super().get_queryset().filter(status='published')
     options = (
         ('draft', 'Draft'),
         ('published', 'Published'),
@@ -15,6 +17,8 @@ class Post (models.Model):
     author = models.ForeignKey (User, on_delete=models.CASCADE, related_name='blog_posts')
     content = models.TextField()
     status = models.CharField(max_length=10, choices=options, default='draft')
+    objects = models.Manager() #default manager 
+    newmanager = Manager() #custom manager
 
     class Meta:
         ordering = ('-publish',)

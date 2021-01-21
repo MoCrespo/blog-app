@@ -4,6 +4,6 @@ from .models import Post
 
 def home(request):
     
-    all_posts = Post.objects.all()
+    all_posts = Post.newmanager.all()
     
     return render(request,'index.html', {'posts': all_posts})
